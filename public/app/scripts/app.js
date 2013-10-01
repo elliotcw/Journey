@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('publicApp', [])
+angular.module('journey', ['journey.controllers', 'journey.services'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -1,9 +1,22 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div class="container demo-1">
+  <!-- Top Navigation -->
+  <header>
+    <h1>Journey <span>a live countdown to your TFL journey</span></h1>  
+  </header>
+  <div class="main clearfix">
+    <form id="nl-form" class="nl-form" name="journey">
+      I'd like to go from  
+      <select name="from" ng-model="from" ng-options="stations for stations in stations"></select>
+      <br />to
+      <select name="to" ng-model="to" ng-options="stations for stations in stations"></select>      
+      <br />on
+      <select name="date" ng-model="date" ng-options="day for day in days"></select>
+      <br />by 
+      <select name="by" ng-model="by" ng-options="time.display as time.raw for time in times"></select>
+      <div class="nl-submit-wrap">
+        <button class="nl-submit" type="submit">Journey</button>
+      </div>
+      <div class="nl-overlay"></div>
+    </form>
+  </div>
 </div>
