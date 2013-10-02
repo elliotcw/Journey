@@ -1,22 +1,50 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
 body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+  font-family:'Lato', Calibri, Arial, sans-serif;
+  background-color: #494949;
+  color: white;
 }
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
+.header {
+  min-height: 80px;
+  margin: 0;
+  color: #333;
+  padding: 1em 2em;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
 }
 
-.hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+.header h1 {
+  display: block;
+  color: #868686;
+}
+
+.header span {
+  display: block;
+  font-size: 0.65em;
+  color: #CECECE;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 0 2em;
+  max-width: 800px;
+  margin-bottom: 50px;
+}
+
+.select2-container {
+  width: 6em;
+}
+
+.select2-container .select2-choice {
+  background: transparent;
+  height: 1em;
+  border: 1px solid transparent;
+  border-bottom: 1px dashed green;
+  color: green;
+  box-shadow: inset 0 1px 3px rgba(221, 221, 221, 0);
+  line-height: 1em;
+  padding: 0;
 }

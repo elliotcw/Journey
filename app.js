@@ -6,7 +6,7 @@ var express = require('express'),
 
 app.use(express.compress());
 
-app.use(express.static(__dirname + '/public/dist', {
+app.use(express.static(__dirname + '/public/app', {
   maxAge: oneDay
 }));
 
@@ -32,7 +32,7 @@ app.get('/api/XML_TRIP_REQUEST2', function(req, res) {
 
   // Fire off the request
   request.get({url: tflUrl}, function(e, r, body) {
-    
+
     // return a json response
     xmljson.to_json(body, function(error, data) {
       res.send(error || data);

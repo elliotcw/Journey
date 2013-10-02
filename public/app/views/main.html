@@ -1,22 +1,22 @@
-<div class="container demo-1">
-  <!-- Top Navigation -->
-  <header>
+<div class="pure-u-1">
+  <header class="header">
     <h1>Journey <span>a live countdown to your TFL journey</span></h1>  
   </header>
-  <div class="main clearfix">
-    <form id="nl-form" class="nl-form" name="journey">
-      I'd like to go from  
-      <select name="from" ng-model="from" ng-options="stations for stations in stations"></select>
-      <br />to
-      <select name="to" ng-model="to" ng-options="stations for stations in stations"></select>      
-      <br />on
-      <select name="date" ng-model="date" ng-options="day for day in days"></select>
-      <br />by 
-      <select name="by" ng-model="by" ng-options="time.display as time.raw for time in times"></select>
-      <div class="nl-submit-wrap">
-        <button class="nl-submit" type="submit">Journey</button>
+  <div class="content">
+    <form class="pure-form" ng-submit="getJourneyInfo()">
+      I'd like to travel from
+      <input ng-model="journey.origin" ng-click="showPopout = !showPopout" ng-init="showPopout = false">
+      <div ng-if="showPopout">
+        <popout-choice things="stations" choice="journey.origin"></popout-choice>
       </div>
-      <div class="nl-overlay"></div>
+      to
+<!--       <input name="to" ng-model="journey.to" popout-choice things="stations">
+      <br/>
+      <input name="date" ng-model="journey.date" popout-choice things="days">
+      <input name="by" ng-model="journey.by" popout-choice things="hours"> -->
+      <div>
+        <button type="submit" class="pure-button pure-button-primary">Start Journey</button>
+      </div>
     </form>
   </div>
 </div>

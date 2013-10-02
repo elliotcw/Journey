@@ -18,7 +18,9 @@ angular.module('journey.services', [])
         'itdTime': journeyOptions.at
       };
 
-      return $http.get('/api/XML_TRIP_REQUEST2', {params: params});
+      console.log(params);
+
+      // return $http.get('/api/XML_TRIP_REQUEST2', {params: params});
     };
 
     this.getTubeStations = function () {
