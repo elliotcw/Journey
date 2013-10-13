@@ -1,19 +1,30 @@
 'use strict';
 
 angular.module('journey.directives', [])
-  .directive('popoutChoice', function () {
+  .directive('choices', function () {
     return {
-      templateUrl: 'views/popoutChoice.html',
-      replace: true,
-      restrict: 'E',
+      templateUrl: 'views/choices.html',
+      replace: false,
+      restrict: 'AE',
       scope: {
-        things: '=',
-        choice: '='
+        choices: '=',
+        ngModel: '=',
+        show: '='
       },
       link: function (scope, element, attrs) {
-        console.log(scope);
-        scope.choose = function (choice) {
-          scope.choice = choice;
+ 
+        scope.$watch('ngModel', function (newValue) {
+          _.each(scope.choices, function (choice) {
+            choice.selected = (choice.name === newValue);
+          });
+        });
+
+        scope.choose = function (selectedChoice) {
+          scope.ngModel = selectedChoice.name;
+          scope.show = false;
+          _.each(scope.choices, function (choice) {
+            choice.selected = (choice === selectedChoice);
+          });
         };
       }
     };

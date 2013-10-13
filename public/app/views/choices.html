@@ -1,0 +1,6 @@
+<div class="choices-menu" ng-if="show">
+  <input type="text" ng-model="q">
+  <ul class="animate-repeat-container no-bullet">
+    <li ng-repeat="choice in choices | filter:q | limitTo:10" ng-class="{active: choice.name == ngModel}" class="animate-repeat" ng-click="choose(choice)">{{choice.name}}<i ng-show="choice.name == ngModel" class="icon-ok"></i></li>
+  </ul>
+</div>

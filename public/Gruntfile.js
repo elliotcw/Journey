@@ -1,10 +1,14 @@
 // Generated on 2013-10-01 using generator-angular 0.4.0
 'use strict';
 var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
+var lrSnippet = require('connect-livereload')({
+  port: LIVERELOAD_PORT
+});
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
+
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -16,6 +20,8 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-connect-proxy');
+  
   // configurable paths
   var yeomanConfig = {
     app: 'app',
@@ -37,6 +43,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
+      compass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['compass:server', 'autoprefixer']
+      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
@@ -51,6 +61,32 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      }
+    },
+    compass: {
+      options: {
+        sassDir: '<%= yeoman.app %>/styles',
+        cssDir: '.tmp/styles',
+        generatedImagesDir: '.tmp/images/generated',
+        imagesDir: '<%= yeoman.app %>/images',
+        javascriptsDir: '<%= yeoman.app %>/scripts',
+        fontsDir: '<%= yeoman.app %>/styles/fonts',
+        importPath: '<%= yeoman.app %>/bower_components',
+        httpImagesPath: '/images',
+        httpGeneratedImagesPath: '/images/generated',
+        httpFontsPath: '/styles/fonts',
+        relativeAssets: false,
+        assetCacheBuster: false
+      },
+      dist: {
+        options: {
+          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+        }
+      },
+      server: {
+        options: {
+          debugInfo: true
+        }
       }
     },
     autoprefixer: {
@@ -70,11 +106,20 @@ module.exports = function (grunt) {
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost'
       },
+      proxies: [{
+        context: '/api',
+        host: 'localhost',
+        port: 3000,
+        https: false,
+        changeOrigin: false,
+        xforward: false
+      }],
       livereload: {
         options: {
           middleware: function (connect) {
             return [
               lrSnippet,
+              proxySnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)
             ];
@@ -269,6 +314,7 @@ module.exports = function (grunt) {
     },
     concurrent: {
       server: [
+        'compass',
         'coffee:dist',
         'copy:styles'
       ],
@@ -277,6 +323,7 @@ module.exports = function (grunt) {
         'copy:styles'
       ],
       dist: [
+        'compass',
         'coffee',
         'copy:styles',
         'imagemin',
@@ -325,6 +372,7 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'autoprefixer',
+      'configureProxies',
       'connect:livereload',
       'open',
       'watch'

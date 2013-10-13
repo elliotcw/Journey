@@ -1,0 +1,38 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import "../bower_components/foundation/scss/foundation";
+@import "compass";
+
+@import "animate";
+
+body {
+  font-family:'Lato', Calibri, Arial, sans-serif;
+  background-color: #333333;
+  color: white;
+}
+
+.header {
+  min-height: 80px;
+  color: #333;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+.header h1 {
+  display: block;
+  color: #868686;
+}
+
+.header span {
+  display: block;
+  font-size: 0.65em;
+  color: #CECECE;
+}
+
+.button.go {
+  @include button(em-calc(12), #29D6BB, $global-radius, false, false, false);
+}
+
+[choices] {
+  position: relative;
+}

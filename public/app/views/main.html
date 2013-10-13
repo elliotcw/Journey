@@ -1,22 +1,31 @@
-<div class="pure-u-1">
-  <header class="header">
-    <h1>Journey <span>a live countdown to your TFL journey</span></h1>  
+<div>
+  <header class="small-12 columns header">
+    <h1>Journey <span>a live countdown to your TFL journey</span></h1>
   </header>
-  <div class="content">
-    <form class="pure-form" ng-submit="getJourneyInfo()">
-      I'd like to travel from
-      <input ng-model="journey.origin" ng-click="showPopout = !showPopout" ng-init="showPopout = false">
-      <div ng-if="showPopout">
-        <popout-choice things="stations" choice="journey.origin"></popout-choice>
-      </div>
-      to
-<!--       <input name="to" ng-model="journey.to" popout-choice things="stations">
-      <br/>
-      <input name="date" ng-model="journey.date" popout-choice things="days">
-      <input name="by" ng-model="journey.by" popout-choice things="hours"> -->
-      <div>
-        <button type="submit" class="pure-button pure-button-primary">Start Journey</button>
-      </div>
-    </form>
+  <div class="content row">
+    <div class="small-12 columns">
+      <form name="form" ng-submit="getJourneyInfo()">
+        
+        I'd like to travel from
+        
+        <input type="text" ng-model="journey.origin" name="origin" ng-click="showOrigin = !showOrigin">
+        <div ng-model="journey.origin" choices="stations" show="showOrigin"></div>
+        
+        to
+        
+        <input type="text" ng-model="journey.destination" name="destination" ng-click="showDestination = !showDestination">
+        <div ng-model="journey.destination" choices="stations" show="showDestination"></div>      
+
+        <input type="text" ng-model="journey.day" name="day" ng-click="showDay = !showDay">
+        <div ng-model="journey.day" choices="days" show="showDay"></div>
+        
+        <input type="text" ng-model="journey.by" name="by" ng-click="showBy = !showBy">
+        <div ng-model="journey.by" choices="hours" show="showBy"></div>
+
+        <div>
+          <button type="submit" class="button go">Start Journey</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

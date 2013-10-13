@@ -10,21 +10,19 @@ angular.module('journey.services', [])
         'sessionID': 0,
         'place_origin': 'London',
         'type_origin': 'stop',
-        'name_origin': journeyOptions.from,
+        'name_origin': journeyOptions.origin,
         'place_destination': 'London',
         'type_destination': 'stop',
-        'name_destination': journeyOptions.to,
-        'itdDate': journeyOptions.on,
-        'itdTime': journeyOptions.at
+        'name_destination': journeyOptions.destination,
+        'itdDate': journeyOptions.day,
+        'itdTime': journeyOptions.by
       };
 
-      console.log(params);
-
-      // return $http.get('/api/XML_TRIP_REQUEST2', {params: params});
+      return $http.get('/api/XML_TRIP_REQUEST2', {params: params});
     };
 
     this.getTubeStations = function () {
-      return [
+      return _.map([
         'Acton Central',
         'Acton Town',
         'Aldgate',
@@ -343,6 +341,10 @@ angular.module('journey.services', [])
         'Wood Green',
         'Woodford',
         'Woodside Park'
-      ];
+      ], function (station) {
+        return {
+          name: station
+        };
+      });
     };
   });

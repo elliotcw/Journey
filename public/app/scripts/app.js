@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('journey', ['journey.controllers', 'journey.services', 'journey.directives', 'ui.select2'])
+angular.module('journey', ['journey.controllers', 'journey.services', 'journey.directives', 'ngRoute', 'ngAnimate'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
