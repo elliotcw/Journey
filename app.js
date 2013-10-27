@@ -6,7 +6,7 @@ var express = require('express'),
 
 app.use(express.compress());
 
-app.use(express.static(__dirname + '/public/app', {
+app.use(express.static(__dirname + '/public/dist', {
   maxAge: oneDay
 }));
 

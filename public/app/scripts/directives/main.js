@@ -22,11 +22,17 @@ angular.module('journey.directives', [])
       },
       link: function (scope, element, attrs) {
 
+        function setView () {
+          scope.from = scope.choices.indexOf(_.where(scope.choices, {name: scope.ngModel})[0]);
+          scope.to = scope.from + 4;
+        }
  
         scope.$watch('ngModel', function (newValue) {
           _.each(scope.choices, function (choice) {
             choice.selected = (choice.name === newValue);
           });
+
+          setView();
         });
 
         scope.close = function () {
@@ -44,9 +50,6 @@ angular.module('journey.directives', [])
           scope.choose(selectedChoice);
           scope.close();
         };
-
-        scope.from = 0;
-        scope.to = 4;
 
         element.on('keydown', function (e) {
           scope.$apply(function () {

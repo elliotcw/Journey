@@ -52,7 +52,7 @@ angular.module('journey.services', [])
         'Blackhorse Road',
         'Blackwall',
         'Bond Street',
-        'Borough',
+        'Borough Station',
         'Boston Manor',
         'Bounds Green',
         'Bow Church',
