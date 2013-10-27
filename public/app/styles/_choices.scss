@@ -1,0 +1,60 @@
+$choiceColour: #76C3BD;
+
+.choices-backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 499;
+}
+
+.choices-menu {
+  position: absolute;
+  background-color: $choiceColour;
+  left: -0.5em;
+  top: 70%;
+  font-size: 2em;
+  transform: translateY(-30%) scale(1);
+  opacity: 1;
+  z-index: 500;
+}
+
+.choices-menu input {
+  margin: 0;
+}
+
+.choices-menu ul {
+  margin: 0;
+}
+
+.choices-menu li {
+  padding: 0.5em;
+}
+
+.choices-menu li:hover {
+  background-color: darken($choiceColour, 20%);
+}
+
+// choices menu animation
+ 
+.choices-menu.ng-enter {
+  transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
+}
+
+.choices-menu.ng-leave {  
+  transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+}
+ 
+.choices-menu.ng-enter,
+.choices-menu.ng-leave.ng-leave-active {
+  transform: translateY(-20%) scale(0.9);
+  opacity: 0;
+}
+ 
+.choices-menu.ng-enter.ng-enter-active,
+.choices-menu.ng-leave {
+  opacity: 1;
+  transform: translateY(-30%) scale(1);
+}

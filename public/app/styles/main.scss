@@ -3,6 +3,7 @@
 @import "compass";
 
 @import "animate";
+@import "choices";
 
 body {
   font-family:'Lato', Calibri, Arial, sans-serif;
@@ -35,4 +36,19 @@ body {
 
 [choices] {
   position: relative;
+}
+
+.inline-text-input {
+  display: inline-block;
+  border-bottom: 1px dashed #B14943;
+  margin: 0 0.6em;
+}
+
+.large-font {
+  font-size: 4em;
+}
+
+.journey-options {
+  margin: 20px 0;
+  float: left;
 }

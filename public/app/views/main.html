@@ -3,29 +3,40 @@
     <h1>Journey <span>a live countdown to your TFL journey</span></h1>
   </header>
   <div class="content row">
-    <div class="small-12 columns">
-      <form name="form" ng-submit="getJourneyInfo()">
+    <div class="journey-options">
+      <div class="small-12 columns">
+        <span class="large-font">I'd like to travel from</span>
         
-        I'd like to travel from
-        
-        <input type="text" ng-model="journey.origin" name="origin" ng-click="showOrigin = !showOrigin">
-        <div ng-model="journey.origin" choices="stations" show="showOrigin"></div>
-        
-        to
-        
-        <input type="text" ng-model="journey.destination" name="destination" ng-click="showDestination = !showDestination">
-        <div ng-model="journey.destination" choices="stations" show="showDestination"></div>      
-
-        <input type="text" ng-model="journey.day" name="day" ng-click="showDay = !showDay">
-        <div ng-model="journey.day" choices="days" show="showDay"></div>
-        
-        <input type="text" ng-model="journey.by" name="by" ng-click="showBy = !showBy">
-        <div ng-model="journey.by" choices="hours" show="showBy"></div>
-
-        <div>
-          <button type="submit" class="button go">Start Journey</button>
+        <div class="inline-text-input">
+          <a class="large-font" ng-click="showOrigin = !showOrigin" ng-init="journey.origin = stations[10].name">{{journey.origin}}</a>
+          <div ng-model="journey.origin" choices="stations" show="showOrigin"></div>
         </div>
-      </form>
+      </div>
+      <div class="small-12 columns">
+        <span class="large-font">to</span>
+        
+        <div class="inline-text-input">
+          <a class="large-font" ng-click="showDestination = !showDestination" ng-init="journey.destination = stations[23].name">{{journey.destination}}</a>
+          <div ng-model="journey.destination" choices="stations" show="showDestination"></div>      
+        </div>
+      </div>
+      <div class="small-12 columns">
+        <div class="inline-text-input">
+          <a class="large-font" ng-click="showDay = !showDay" ng-init="journey.day = days[0].name">{{journey.day}}</a>
+          <div ng-model="journey.day" choices="days" show="showDay"></div>
+        </div>
+        
+        <span class="large-font">by</span>
+
+        <div class="inline-text-input">
+          <a class="large-font" ng-click="showBy = !showBy" ng-init="journey.by = hours[2].name">{{journey.by}}</a>
+          <div ng-model="journey.by" choices="hours" show="showBy"></div>
+        </div>
+      </div>
+    </div>    
+    <div class="small-12 columns journey-actions">
+      <button type="button" ng-click="getJourneyInfo()" class="button go">Start Journey</button>
+    </div>      
     </div>
   </div>
 </div>

@@ -26,10 +26,10 @@ angular.module('journey.controllers', [])
     $scope.getJourneyInfo = function () {
 
       var journeyRequest = {
-        origin: $scope.form.origin.$viewValue,
-        destination: $scope.form.origin.$viewValue,
-        day: _.find($scope.days, {name: $scope.form.day.$viewValue}).raw,
-        by: _.find($scope.hours, {name: $scope.form.by.$viewValue}).raw
+        origin: $scope.journey.origin,
+        destination: $scope.journey.destination,
+        day: _.find($scope.days, {name: $scope.journey.day}).raw,
+        by: _.find($scope.hours, {name: $scope.journey.by}).raw
       };
 
       journeyService.getJourneyInfo(journeyRequest)
